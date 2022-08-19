@@ -20,6 +20,7 @@ const websiteschema = new mongoose.Schema({
     },
     bgcolor: String,
     fontcolor: String,
+    visited: Number,
 });
 
 module.exports = mongoose.model("Website", websiteschema);

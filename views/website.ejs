@@ -11,6 +11,7 @@
     <div id="title">list of links 
         <% if(canedit){ %>
             <a href="/link/website/<%= website._id %>"><button id="add">add link</button></a>
+            <div class="visited">no of people visited <%= website.visited %></div>
         <% } %>
     </div>
     <div class="linklist" >
@@ -71,6 +72,7 @@
         justify-content: space-between;
         align-items: baseline;
         width: 300px;
+        flex-wrap: wrap;
         margin-top: 2em;
         margin-bottom: 2em;
         font-size: 2em;

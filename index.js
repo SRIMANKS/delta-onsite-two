@@ -144,6 +144,7 @@ app.post("/website", verification, async (req, res, next) => {
         creatorid: user.userid,
         bgcolor: req.body.bgcolor,
         fontcolor: req.body.fontcolor,
+        visited: 0,
       });
       await newwebsite.save();
 
@@ -174,6 +175,8 @@ app.get("/website/:id", async (req, res, next) => {
     console.log("verfiing  failed");
     canedit = false;
   }
+  await websiteModel.findByIdAndUpdate(req.params.id, { $inc: { visited: 1 } });
+
     res.render("website", { website: website, canedit: canedit, links: linkoflinks });
   } else {
     req.flash("error", "website not found");
