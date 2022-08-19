@@ -17,7 +17,9 @@ const websiteschema = new mongoose.Schema({
     creatorid:{
         type: String,
         required: true,
-    }
+    },
+    bgcolor: String,
+    fontcolor: String,
 });
 
 module.exports = mongoose.model("Website", websiteschema);

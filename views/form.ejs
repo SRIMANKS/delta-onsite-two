@@ -14,12 +14,22 @@
     <header>CREATE YOUR WEBSITE</header>
     <div class="flash"><%= message%></div>
     <form action="/website" method="post">
-        <input type="text" name="name" placeholder="Enter website name" required>
-        <input type="text" name="mailid" placeholder="Enter your email address" required>
-        <input type="text" name="instagramid" placeholder="Enter your instagram Id" required>
-        <input type="text" name="facebookid" placeholder="Enter your facebook Id" required>
-        <input type="text" name="twitterid" placeholder="Enter your twitter Id" required>
-        <input type="text" name="linkedinid" placeholder="Enter your linkedin Id" required>
+        <input class="input" type="text" name="name" placeholder="Enter website name" required>
+        <input class="input" type="text" name="mailid" placeholder="Enter your email address" required>
+        <input class="input" type="text" name="instagramid" placeholder="Enter your instagram Id" required>
+        <input class="input" type="text" name="facebookid" placeholder="Enter your facebook Id" required>
+        <input class="input" type="text" name="twitterid" placeholder="Enter your twitter Id" required>
+        <input class="input" type="text" name="linkedinid" placeholder="Enter your linkedin Id" required>
+        <div class="preference">
+<div>
+    <label for="bgcolor">background-color</label>
+    <input type="color" name="bgcolor" id="bgcolor" value="#ffffff">
+</div>
+<div>
+    <label for="fontcolor">font-color</label>
+    <input type="color" name="fontcolor" id="fontcolor" value="#1c1c1c">
+</div>
+        </div>
         <button type="submit">Create</button>
     </form>
 </body>
@@ -58,13 +68,24 @@
         justify-content: space-evenly;
     }
 
-    input{
+    .input{
         background-color: #EAE2B7;
         width:80%;
         padding:0.5em 1em;
         border-radius: 10px;
         font-size: 1.2em;
         margin-bottom: 1em;
+    }
+    .preference{
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+        justify-content: space-between;
+        margin-bottom: 2em;
+    }
+    .preference div{
+        display: flex;
+        flex-direction: column;
     }
 
     button{
@@ -78,8 +99,6 @@
         transition: 0.5s;
     }
     
-
-
     button:hover{
         color: #EAE2B7;
         background-color: crimson;

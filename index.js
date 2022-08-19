@@ -98,7 +98,7 @@ app.post("/login", async (req, res, next) => {
   try {
     const user = await userModel.findOne({ username: req.body.username });
     if (user) {
-      const isMatch = bcrypt.compare(req.body.password, user.password);
+      const isMatch = await bcrypt.compare(req.body.password, user.password);
       if (isMatch) {
         const token = jwt.sign(
           { username: req.body.username, userid: String(user._id) },
@@ -107,7 +107,7 @@ app.post("/login", async (req, res, next) => {
         );
         req.session.token = token;
         console.log(`token is ${req.session.token}`);
-        req.flash("success", "You are logged in");
+        req.flash("error", "You are logged in");
         res.redirect("/");
       } else {
         req.flash("info", "Invalid username or password");
@@ -142,6 +142,8 @@ app.post("/website", verification, async (req, res, next) => {
         twitterid: req.body.twitterid,
         linkedinid: req.body.linkedinid,
         creatorid: user.userid,
+        bgcolor: req.body.bgcolor,
+        fontcolor: req.body.fontcolor,
       });
       await newwebsite.save();
 
@@ -162,7 +164,7 @@ app.get("/website/:id", async (req, res, next) => {
   const website = await websiteModel.findById(req.params.id);
   if (website) {
   var canedit = false;
-  const linkoflinks = await linkModel.find({ websiteid: req.params.id });
+  const linkoflinks = await linkModel.find({ websiteId: req.params.id });
   try {
     const user = jwt.verify(req.session.token, process.env.SECRET);
     if (website.creatorid === user.userid) {
@@ -190,6 +192,8 @@ app.post("/link" , verification, async (req, res, next) => {
     name: req.body.name,
     link: req.body.link,
     websiteId: req.body.websiteid,
+    bgcolor: req.body.bgcolor,
+    fontcolor: req.body.fontcolor,
   });
   await link.save();
   res.redirect(`/website/${req.body.websiteid}`);
@@ -202,7 +206,16 @@ app.delete("/link", verification, async (req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("home",{message: req.flash("error")});
+
+  var isloggedin = false;
+  try{
+  const user = jwt.verify(req.session.token, process.env.SECRET);
+  isloggedin = true;
+  }catch(e){
+    isloggedin = false;
+  }
+
+  res.render("home",{message: req.flash("error"),isloggedin:isloggedin});
 });
 
 
