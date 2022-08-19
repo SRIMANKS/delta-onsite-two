@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>ENTER LINK TO ADD</header>
+    <form action="/link" method="post">
+        <input type="text" name="name" placeholder="Enter link name" required>
+        <input type="text" name="link" placeholder="Enter link address" required>
+        <input type="hidden" name="websiteid" value="<%= websiteid %>">
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
+
+<style>
+    body{
+        background: linear-gradient(#233d4d,#003049);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:100vw;
+        border:0px;
+        margin:0px;
+        justify-content: flex-start;
+        min-height: 100vh;
+        font-family: 'Open Sans', sans-serif;
+    }
+    header{
+        color: #FCBF49;
+        font-size: 3em;
+        margin-bottom: 4em;
+        font-weight: bold;
+    }
+    form{
+        width: min(600px,90vw);
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    input{
+        background-color: #EAE2B7;
+        width:80%;
+        padding:0.5em 1em;
+        border-radius: 10px;
+        font-size: 1.2em;
+        margin-bottom: 1em;
+    }
+    button{
+        border:none;
+        width: 75%;
+        color:white;
+        background-color: #D62828;
+        font-size: 1.5em;
+        padding:0.5em 1em;
+        border-radius: 10px;
+        transition: 0.5s;
+    }
+    button:hover{
+        transform: scale(1.05);
+        background-color: crimson;
+    }
+
+
+</style>
